@@ -24,6 +24,15 @@
           padding: 8px 8px;
           cursor: pointer;
       }
+
+      .button {
+          background-color: black;
+          color: white;
+          border: none;
+          padding: 8px 8px;
+          cursor: pointer;
+      }
+
     </style>
    
 </head>
@@ -39,6 +48,7 @@
             <button type="button" id="button" onclick="buttfun('bold')"><b><img src="bold-xxl.png" width="10" height="10" ></b></button>
             <button type="button" id="button" onclick="buttfun('underline')"><u><img src="format_underline_white_192x192.png" width="16" height="15" ></u></button>
             <button type="button" id="button" onclick="buttfun('italic')"><i><img src="italic-xxl.png" width="10" height="10" ></i></button>
+            <input type="color" class="button" id="font-color">
         
         </div>
     </center> 
@@ -54,7 +64,12 @@
     function buttfun(command, value = null) {
     document.execCommand(command, false, value);
     saveState();
-}
+    }
+    const fontColor = document.getElementById('font-color');
+        fontColor.addEventListener('input', () => {
+            buttfun('foreColor', fontColor.value);
+        });
+
     </script>
     
 </body>
