@@ -21,7 +21,7 @@
           background-color: black;
           color: white;
           border: none;
-          padding: 20px 15px;
+          padding: 8px 8px;
           cursor: pointer;
       }
     </style>
@@ -36,6 +36,7 @@
 
    <center>
          <div class="backcolor" id="button" >
+            <button type="button" id="button" onclick="buttfun('bold')"><b><img src="bold-xxl.png" width="10" height="10" ></b></button>
         
         </div>
     </center> 
@@ -46,7 +47,12 @@
    
     
     <script>
+        const editor = document.getElementById('editor');
 
+    function buttfun(command, value = null) {
+    document.execCommand(command, false, value);
+    saveState();
+}
     </script>
     
 </body>
