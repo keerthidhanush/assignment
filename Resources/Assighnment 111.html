@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Text Editor - [CT/2019/034]</title>
+    <!-- Internal CSS -->
+    <style> 
+    #textarea {
+        border: 1px solid #ccc;
+        min-height: 200px;
+        padding: 0px;
+      }
+  
+      .backcolor{
+          background-color: black;
+      }
+      #button {
+          background-color: black;
+          color: white;
+          border: none;
+          padding: 8px 8px;
+          cursor: pointer;
+      }
+
+      .button {
+          background-color: black;
+          color: white;
+          border: none;
+          padding: 8px 8px;
+          cursor: pointer;
+      }
+
+    </style>
+   
+</head>
+
+<body>
+    <div>
+        <h1>Online Text Edditing Application.</h1>
+        
+    </div>
+
+   <center>
+         <div class="backcolor" id="button" >
+            <button type="button" id="button" onclick="buttfun('bold')"><b><img src="bold-xxl.png" width="10" height="10" ></b></button>
+            <button type="button" id="button" onclick="buttfun('underline')"><u><img src="format_underline_white_192x192.png" width="16" height="15" ></u></button>
+            <button type="button" id="button" onclick="buttfun('italic')"><i><img src="italic-xxl.png" width="10" height="10" ></i></button>
+            <input type="color" class="button" id="font-color">
+        
+        </div>
+    </center> 
+
+    <div id="textarea" contenteditable="true">
+  
+    </div>
+   
+    
+    <script>
+        const editor = document.getElementById('textarea');
+
+    function buttfun(command, value = null) {
+    document.execCommand(command, false, value);
+    saveState();
+    }
+    const fontColor = document.getElementById('font-color');
+        fontColor.addEventListener('input', () => {
+            buttfun('foreColor', fontColor.value);
+        });
+
+    </script>
+    
+</body>
+<!-- Author: [Keerththigan] | [CT/2019/034] -->
+</html>
