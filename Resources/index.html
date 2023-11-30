@@ -49,6 +49,12 @@
             <button type="button" id="button" onclick="buttfun('underline')"><u><img src="format_underline_white_192x192.png" width="16" height="15" ></u></button>
             <button type="button" id="button" onclick="buttfun('italic')"><i><img src="italic-xxl.png" width="10" height="10" ></i></button>
             <input type="color" class="button" id="font-color">
+
+            <button type="button" id="button" onclick="alignText('left')"><img src="left.png" width="10" height="10" ></button>
+            <button type="button" id="button" onclick="alignText('center')"><img src="center.png" width="10" height="10" ></button>
+            <button type="button" id="button" onclick="alignText('right')"><img src="right.png" width="10" height="10" ></button>
+            <button type="button" id="button" onclick="alignText('justify')"><img src="justify.png" width="10" height="10" ></button>
+
         
         </div>
     </center> 
@@ -59,16 +65,27 @@
    
     
     <script>
-        const editor = document.getElementById('textarea');
 
+    const editor = document.getElementById('textarea');
     function buttfun(command, value = null) {
-    document.execCommand(command, false, value);
-    saveState();
+        document.execCommand(command, false, value);
+        saveState();
     }
+
     const fontColor = document.getElementById('font-color');
-        fontColor.addEventListener('input', () => {
-            buttfun('foreColor', fontColor.value);
-        });
+    fontColor.addEventListener('input', () => {
+        buttfun('foreColor', fontColor.value);
+    });
+
+
+    function alignText(align) {
+        if (align === 'justify') {
+            document.execCommand('justifyFull', false, null);
+        } else {
+            document.execCommand('justify' + align, false, null);
+        }
+        saveState();
+    }
 
     </script>
     
