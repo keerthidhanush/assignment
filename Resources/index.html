@@ -12,6 +12,7 @@
         border: 1px solid #ccc;
         min-height: 200px;
         padding: 0px;
+        overflow: auto;
       }
   
       .backcolor{
@@ -39,7 +40,7 @@
 
 <body>
     <div>
-        <h1>Online Text Edditing Application.</h1>
+        <h1>!!!Online Text Edditing Application!!!</h1>
         
     </div>
 
@@ -55,6 +56,10 @@
             <button type="button" id="button" onclick="alignText('right')"><img src="right.png" width="10" height="10" ></button>
             <button type="button" id="button" onclick="alignText('justify')"><img src="justify.png" width="10" height="10" ></button>
 
+
+        <button type="button" id="button" onclick="undo()"><img src="undo-4-32.png" width="10" height="10" ></button>
+        <button type="button" id="button" onclick="redo()"><img src="action-redo-32.png" width="10" height="10" ></button>
+
         
         </div>
     </center> 
@@ -63,12 +68,15 @@
         It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
         The point of using Lorem Ipsum is that it has a more-of-less normal distribution of letters,as opposed to using 'Content here',
         making it look like readable English.Many desktop publishing packages and web page editors now use Lorem Ipsum as their default 
-        module text,and a search for'lorem Ipsum' will uncover many web sites still in their infancy.Various version have evolved over the 
+        module text,and a search for'lorem Im' will uncover many web sites still in their infancy.Various version have evolved over the 
         years,sometimes by accident,sometimes on purpose(injected humor and the like).
     </div>
    
     
     <script>
+
+    let undoStack = [];
+    let redoStack = [];
 
     const editor = document.getElementById('textarea');
     function buttfun(command, value = null) {
@@ -89,6 +97,29 @@
             document.execCommand('justify' + align, false, null);
         }
         saveState();
+    }
+
+    
+
+    function saveState() {
+      const content = editor.innerHTML;
+      undoStack.push(content);
+    }
+
+    function undo() {
+      if (undoStack.length > 1) {
+        redoStack.push(undoStack.pop());
+        const content = undoStack[undoStack.length - 1];
+        editor.innerHTML = content;
+      }
+    }
+
+    function redo() {
+      if (redoStack.length > 0) {
+        const content = redoStack.pop();
+        editor.innerHTML = content;
+        undoStack.push(content);
+      }
     }
 
     </script>
